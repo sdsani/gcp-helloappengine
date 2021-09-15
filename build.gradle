@@ -1,0 +1,63 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'eclipse'
+	id 'java'
+	id 'com.google.cloud.tools.appengine' version '2.4.2'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+  set('springCloudGcpVersion', "2.0.3")
+  set('springCloudVersion', "2020.0.3")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// https://spring.io/projects/spring-cloud-gcp
+	implementation 'com.google.cloud:spring-cloud-gcp-starter'
+		
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+  }
+}
+
+test {
+	useJUnitPlatform()
+}
+
+appengine {
+  deploy {
+    projectId = "seismic-bonfire-322601"
+    version = "13"
+    promote = true
+  }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.example.hellosds.HellosdsApplication'
+        )
+    }
+    
+    enabled = false
+    classifier = ''
+    /*from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }*/
+}

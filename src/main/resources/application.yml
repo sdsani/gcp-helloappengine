@@ -1,0 +1,19 @@
+---
+spring:
+  profiles: default
+message: "Hello, from local!"
+---
+spring:
+  profiles: production
+message: "Hello, from App Engine!"
+
+#https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
+management:
+  health:
+#https://puttzy.github.io/spring-boot-healthchecks-in-google-cloud-run.html
+    diskspace:
+      enabled: false
+#following is to log more details around health page.
+  endpoint:
+    health:
+      show-details: always

@@ -1,0 +1,18 @@
+runtime: java11
+entrypoint: java -Xmx64m -jar helloappengine-0.0.1-SNAPSHOT.jar
+#service: hello-app-engine
+service: default
+env: standard
+instance_class: F1
+runtime_config:
+  jdk: openjdk11
+env_variables:
+  SPRING_PROFILES_ACTIVE: "production"
+handlers:
+- url: /.*
+  script: this field is required, but ignored
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: automatic
+  min_pending_latency: automatic
+  max_pending_latency: automatic
