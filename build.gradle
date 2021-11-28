@@ -3,7 +3,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'eclipse'
 	id 'java'
-	id 'com.google.cloud.tools.appengine' version '2.4.2'
+	//id 'com.google.cloud.tools.appengine' version '2.4.2'
+	id 'com.google.cloud.tools.appengine-appyaml' version '2.4.2'
 }
 
 group = 'com.example'
@@ -23,7 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
-	// https://spring.io/projects/spring-cloud-gcp
+	// https://spring.io/projects/spring-cloud-gcp.
+	//The Spring Cloud GCP project makes the Spring Framework a first-class citizen of Google Cloud Platform (GCP).
 	implementation 'com.google.cloud:spring-cloud-gcp-starter'
 		
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -40,10 +42,12 @@ test {
 	useJUnitPlatform()
 }
 
+//https://github.com/GoogleCloudPlatform/app-gradle-plugin/blob/master/USER_GUIDE.md#app-engine-appyaml-based-projects
 appengine {
+
   deploy {
     projectId = "seismic-bonfire-322601"
-    version = "13"
+    version = "11"
     promote = true
   }
 }

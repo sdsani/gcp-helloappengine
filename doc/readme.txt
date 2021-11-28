@@ -1,3 +1,7 @@
+Plugin documentation
+====================
+https://github.com/GoogleCloudPlatform/app-gradle-plugin
+
 Doc from GCP
 ============
 https://cloud.google.com/appengine/docs/standard/java11/building-app/writing-web-service
